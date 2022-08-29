@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use ORM\Table;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
+#[Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -88,14 +90,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    /**
- 	* @see UserInterface
- 	*/
-	public function getSalt()
-	{
-    	// not needed when using the "bcrypt" algorithm in security.yaml
-	}
 
     /**
      * @see UserInterface
